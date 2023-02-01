@@ -1,7 +1,11 @@
-import React from "react";
+import { SigninContainer } from "components";
 
 const SigninPage = () => {
-  return <div></div>;
+  return (
+    <>
+      <SigninContainer />
+    </>
+  );
 };
 
 export default SigninPage;
