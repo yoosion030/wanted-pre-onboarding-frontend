@@ -1,7 +1,7 @@
-import axios from "axios";
 import { Input, Button, AuthForm } from "components";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import instance from "shared/instance";
 
 const SignupContainer = () => {
   const navigate = useNavigate();
@@ -14,10 +14,7 @@ const SignupContainer = () => {
   const handleSignup = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://pre-onboarding-selection-task.shop/auth/signup",
-        { email, password }
-      );
+      await instance.post("/auth/signup", { email, password });
       navigate("/signin");
     } catch (error) {
       console.log(error);
