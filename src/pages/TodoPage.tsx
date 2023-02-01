@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import { TodoContainer } from "components";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const TodoPage = () => {
@@ -7,7 +8,7 @@ const TodoPage = () => {
     const token = localStorage.getItem("access_token");
     if (!token) navigate("/signin");
   }, []);
-  return <div></div>;
+  return <TodoContainer />;
 };
 
 export default TodoPage;
