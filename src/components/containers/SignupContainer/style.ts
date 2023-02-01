@@ -51,8 +51,8 @@ export const Input = styled.input`
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px #454545 inset !important;
-    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+    -webkit-text-fill-color: #000;
   }
 `;
 
@@ -65,4 +65,8 @@ export const SubmitButton = styled.button`
   color: #ffffff;
   border: none;
   cursor: pointer;
+
+  &:disabled {
+    background-color: #ccc;
+  }
 `;
