@@ -11,7 +11,7 @@ const SigninContainer = () => {
   const [emailError, setEmailError] = useState<boolean>(true);
   const [passwordError, setPasswordError] = useState<boolean>(true);
 
-  const handleSignin = async (e: any) => {
+  const handleSignin = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     try {
       const { data } = await instance.post("/auth/signin", { email, password });

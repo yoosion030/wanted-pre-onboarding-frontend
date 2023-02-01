@@ -17,7 +17,6 @@ export const AuthForm = styled.form`
   background-color: #fff;
   padding: 200px 100px;
   display: flex;
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
 
