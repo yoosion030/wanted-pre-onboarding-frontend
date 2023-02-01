@@ -1,14 +1,13 @@
 import axios from "axios";
+import { Input, Button, AuthForm } from "components";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "./style";
 
 const SignupContainer = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
   const [emailError, setEmailError] = useState<boolean>(true);
   const [passwordError, setPasswordError] = useState<boolean>(true);
 
@@ -27,34 +26,40 @@ const SignupContainer = () => {
 
   useEffect(() => {
     if (email.includes("@")) setEmailError(false);
+  }, [email]);
+
+  useEffect(() => {
     if (password.length >= 8) setPasswordError(false);
-  }, [email, password]);
+    else setPasswordError(true);
+  }, [password]);
 
   return (
-    <S.Conainer>
-      <S.SigninForm>
-        <div>
-          <S.Label>이메일</S.Label>
-          <S.EmailInput
-            data-testid="email-input"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <S.Label>비밀번호</S.Label>
-          <S.PasswordInput
-            data-testid="password-input"
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-          />
-        </div>
-        <S.SubmitButton
-          data-testid="signup-button"
-          disabled={emailError || passwordError}
-          onClick={handleSignup}
-        >
-          회원가입
-        </S.SubmitButton>
-      </S.SigninForm>
-    </S.Conainer>
+    <AuthForm>
+      <div>
+        <p>이메일</p>
+        <Input
+          data-testid="email-input"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value)
+          }
+        />
+        <p>비밀번호</p>
+        <Input
+          data-testid="password-input"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(e.target.value)
+          }
+          type="password"
+        />
+      </div>
+      <Button
+        data-testid="signup-button"
+        disabled={emailError || passwordError}
+        onClick={handleSignup}
+      >
+        회원가입
+      </Button>
+    </AuthForm>
   );
 };
 
