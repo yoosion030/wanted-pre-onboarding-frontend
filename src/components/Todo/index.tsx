@@ -40,49 +40,49 @@ const Todo = ({ getAndUpdateTodos, todo }: TodoProps) => {
   };
 
   return (
-    <div>
-      <input
-        type="checkbox"
-        defaultChecked={todo.isCompleted}
-        onChange={() => setIsCompleted(!isCompleted)}
-      />
-
-      {update ? (
-        <>
-          <Input
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setUpdatedContent(e.target.value)
-            }
-            defaultValue={todo.todo}
-          />
-
-          <Button
-            type="button"
-            data-testid="modify-input"
-            onClick={() => updateTodo(todo)}
-          >
-            제출
-          </Button>
-          <Button type="button" onClick={() => setUpdate(false)}>
-            취소
-          </Button>
-        </>
-      ) : (
-        <>
-          <span>{todo.todo}</span>
-          <Button
-            type="button"
-            data-testid="modify-input"
-            onClick={() => setUpdate(true)}
-          >
-            수정
-          </Button>
-          <Button type="button" onClick={() => deleteTodo(todo.id)}>
-            삭제
-          </Button>
-        </>
-      )}
-    </div>
+    <S.TodoContainer>
+      <S.Todo>
+        <input
+          type="checkbox"
+          defaultChecked={todo.isCompleted}
+          onChange={() => setIsCompleted(!isCompleted)}
+        />
+        {update ? (
+          <>
+            <S.TodoInput
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setUpdatedContent(e.target.value)
+              }
+              defaultValue={todo.todo}
+            />
+            <Button
+              type="button"
+              data-testid="modify-input"
+              onClick={() => updateTodo(todo)}
+            >
+              제출
+            </Button>
+            <Button type="button" onClick={() => setUpdate(false)}>
+              취소
+            </Button>
+          </>
+        ) : (
+          <>
+            <S.Content>{todo.todo}</S.Content>
+            <Button
+              type="button"
+              data-testid="modify-input"
+              onClick={() => setUpdate(true)}
+            >
+              수정
+            </Button>
+            <Button type="button" onClick={() => deleteTodo(todo.id)}>
+              삭제
+            </Button>
+          </>
+        )}
+      </S.Todo>
+    </S.TodoContainer>
   );
 };
 

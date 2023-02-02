@@ -17,7 +17,9 @@ export const GlobalStyle = () => {
           }
         }
 
-        body {
+        body,
+        input,
+        button {
           font-family: "Roboto", sans-serif;
         }
 
