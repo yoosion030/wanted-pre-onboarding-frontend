@@ -50,6 +50,7 @@ const Todo = ({ getAndUpdateTodos, todo }: TodoProps) => {
         {update ? (
           <>
             <S.TodoInput
+              data-testid="modify-input"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setUpdatedContent(e.target.value)
               }
@@ -57,12 +58,16 @@ const Todo = ({ getAndUpdateTodos, todo }: TodoProps) => {
             />
             <Button
               type="button"
-              data-testid="modify-input"
+              data-testid="submit-button"
               onClick={() => updateTodo(todo)}
             >
               제출
             </Button>
-            <Button type="button" onClick={() => setUpdate(false)}>
+            <Button
+              type="button"
+              data-testid="cancel-button"
+              onClick={() => setUpdate(false)}
+            >
               취소
             </Button>
           </>
@@ -76,7 +81,11 @@ const Todo = ({ getAndUpdateTodos, todo }: TodoProps) => {
             >
               수정
             </Button>
-            <Button type="button" onClick={() => deleteTodo(todo.id)}>
+            <Button
+              type="button"
+              data-testid="delete-input"
+              onClick={() => deleteTodo(todo.id)}
+            >
               삭제
             </Button>
           </>
