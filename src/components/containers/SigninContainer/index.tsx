@@ -16,6 +16,11 @@ const SigninContainer = () => {
     try {
       const { data } = await instance.post("/auth/signin", { email, password });
       localStorage.setItem("access_token", data.access_token);
+
+      instance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${data.access_token}`;
+
       navigate("/todo");
     } catch (error) {
       console.log(error);
