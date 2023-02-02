@@ -13,7 +13,7 @@ interface TodoType {
 
 const TodoContainer = () => {
   const [todos, setTodos] = useState<TodoType[]>();
-  const [todo, setTodo] = useState<string>();
+  const [todo, setTodo] = useState<string>("");
 
   const getAndUpdateTodos = async () => {
     const { data } = await instance.get("/todos");
@@ -23,7 +23,6 @@ const TodoContainer = () => {
   useEffect(() => {
     getAndUpdateTodos();
   }, []);
-  console.log(todos);
 
   const createTodo = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -34,6 +33,16 @@ const TodoContainer = () => {
       });
       getAndUpdateTodos();
       console.log(data);
+      setTodo("");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const deleteTodo = async (id: number) => {
+    try {
+      await instance.delete(`/todos/${id}`);
+      getAndUpdateTodos();
     } catch (e) {
       console.log(e);
     }
@@ -49,6 +58,7 @@ const TodoContainer = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setTodo(e.target.value)
             }
+            value={todo}
           />
           <Button data-testid="new-todo-add-button" onClick={createTodo}>
             추가
@@ -57,8 +67,12 @@ const TodoContainer = () => {
         <>
           {todos?.map((todo) => (
             <S.Todo key={todo.id}>
-              <input type="checkbox" checked={todo.isCompleted} />
+              <input type="checkbox" defaultChecked={todo.isCompleted} />
               <span>{todo.todo}</span>
+              <button data-testid="modify-input">수정</button>
+              <button type="button" onClick={(e) => deleteTodo(todo.id)}>
+                삭제
+              </button>
             </S.Todo>
           ))}
         </>
