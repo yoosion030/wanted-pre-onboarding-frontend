@@ -15,27 +15,29 @@ const TodoContainer = () => {
   const [todo, setTodo] = useState<string>("");
 
   const getAndUpdateTodos = async () => {
-    const { data } = await instance.get("/todos");
-    setTodos(data);
+    try {
+      const { data } = await instance.get("/todos");
+      setTodos(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getAndUpdateTodos();
   }, []);
 
-  console.log(todos);
-
   const createTodo = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     try {
-      const { data } = await instance.post("/todos", {
+      await instance.post("/todos", {
         todo,
       });
       getAndUpdateTodos();
-      console.log(data);
+
       setTodo("");
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 

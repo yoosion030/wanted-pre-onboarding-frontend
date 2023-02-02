@@ -19,8 +19,8 @@ const Todo = ({ getAndUpdateTodos, todo }: TodoProps) => {
     try {
       await instance.delete(`/todos/${id}`);
       getAndUpdateTodos();
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -34,8 +34,8 @@ const Todo = ({ getAndUpdateTodos, todo }: TodoProps) => {
       });
       getAndUpdateTodos();
       setUpdate(false);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 
