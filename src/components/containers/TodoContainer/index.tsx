@@ -1,5 +1,4 @@
-import Button from "components/Button";
-import Input from "components/Input";
+import { Todo, Input, Button } from "components";
 import { useEffect, useState } from "react";
 import instance from "shared/instance";
 import * as S from "./style";
@@ -24,9 +23,10 @@ const TodoContainer = () => {
     getAndUpdateTodos();
   }, []);
 
+  console.log(todos);
+
   const createTodo = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-
     try {
       const { data } = await instance.post("/todos", {
         todo,
@@ -34,15 +34,6 @@ const TodoContainer = () => {
       getAndUpdateTodos();
       console.log(data);
       setTodo("");
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const deleteTodo = async (id: number) => {
-    try {
-      await instance.delete(`/todos/${id}`);
-      getAndUpdateTodos();
     } catch (e) {
       console.log(e);
     }
@@ -60,22 +51,21 @@ const TodoContainer = () => {
             }
             value={todo}
           />
-          <Button data-testid="new-todo-add-button" onClick={createTodo}>
+          <Button
+            type="submit"
+            data-testid="new-todo-add-button"
+            onClick={createTodo}
+          >
             추가
           </Button>
         </S.InputSection>
-        <>
-          {todos?.map((todo) => (
-            <S.Todo key={todo.id}>
-              <input type="checkbox" defaultChecked={todo.isCompleted} />
-              <span>{todo.todo}</span>
-              <button data-testid="modify-input">수정</button>
-              <button type="button" onClick={(e) => deleteTodo(todo.id)}>
-                삭제
-              </button>
-            </S.Todo>
-          ))}
-        </>
+        {todos?.map((todo) => (
+          <Todo
+            todo={todo}
+            key={todo.id}
+            getAndUpdateTodos={getAndUpdateTodos}
+          />
+        ))}
       </S.TodoForm>
     </S.Container>
   );
