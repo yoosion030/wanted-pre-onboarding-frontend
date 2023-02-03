@@ -3,6 +3,10 @@ import { palette } from "shared/Palette";
 
 export const TodoContainer = styled.li`
   list-style: none;
+
+  background-color: #ffffff;
+  height: 50px;
+  margin-bottom: 40px;
 `;
 
 export const Todo = styled.label`
@@ -10,11 +14,11 @@ export const Todo = styled.label`
   align-items: center;
 
   button {
+    width: 50px;
     height: 40px;
   }
 
   justify-content: space-between;
-  margin-bottom: 30px;
   line-height: 40px;
 `;
 

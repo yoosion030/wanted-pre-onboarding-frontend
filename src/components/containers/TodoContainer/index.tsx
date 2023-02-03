@@ -1,4 +1,4 @@
-import { Todo, Input, Button } from "components";
+import { Todo, Input, Button, Layout } from "components";
 import { useEffect, useState } from "react";
 import instance from "shared/instance";
 import * as S from "./style";
@@ -29,6 +29,7 @@ const TodoContainer = () => {
 
   const createTodo = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    if (todo === "") return;
     try {
       await instance.post("/todos", {
         todo,
@@ -42,34 +43,28 @@ const TodoContainer = () => {
   };
 
   return (
-    <S.Container>
-      <S.TodoForm>
-        <S.Label>할 일 입력</S.Label>
-        <S.InputSection>
-          <Input
-            data-testid="new-todo-input"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setTodo(e.target.value)
-            }
-            value={todo}
-          />
-          <Button
-            type="submit"
-            data-testid="new-todo-add-button"
-            onClick={createTodo}
-          >
-            추가
-          </Button>
-        </S.InputSection>
-        {todos?.map((todo) => (
-          <Todo
-            todo={todo}
-            key={todo.id}
-            getAndUpdateTodos={getAndUpdateTodos}
-          />
-        ))}
-      </S.TodoForm>
-    </S.Container>
+    <Layout>
+      <p>할 일 입력</p>
+      <S.InputSection>
+        <Input
+          data-testid="new-todo-input"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setTodo(e.target.value)
+          }
+          value={todo}
+        />
+        <Button
+          type="submit"
+          data-testid="new-todo-add-button"
+          onClick={createTodo}
+        >
+          추가
+        </Button>
+      </S.InputSection>
+      {todos?.map((todo) => (
+        <Todo todo={todo} key={todo.id} getAndUpdateTodos={getAndUpdateTodos} />
+      ))}
+    </Layout>
   );
 };
 

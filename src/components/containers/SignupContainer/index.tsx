@@ -1,4 +1,4 @@
-import { Input, Button, AuthForm } from "components";
+import { Input, Button, Layout } from "components";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import instance from "shared/instance";
@@ -11,8 +11,7 @@ const SignupContainer = () => {
   const [emailError, setEmailError] = useState<boolean>(true);
   const [passwordError, setPasswordError] = useState<boolean>(true);
 
-  const handleSignup = async (e: any) => {
-    e.preventDefault();
+  const handleSignup = async () => {
     try {
       await instance.post("/auth/signup", { email, password });
       navigate("/signin");
@@ -31,7 +30,7 @@ const SignupContainer = () => {
   }, [password]);
 
   return (
-    <AuthForm>
+    <Layout>
       <div>
         <p>이메일</p>
         <Input
@@ -50,13 +49,15 @@ const SignupContainer = () => {
         />
       </div>
       <Button
+        type="button"
         data-testid="signup-button"
         disabled={emailError || passwordError}
         onClick={handleSignup}
+        style={{ width: "100%" }}
       >
         회원가입
       </Button>
-    </AuthForm>
+    </Layout>
   );
 };
 

@@ -9,11 +9,7 @@ const SigninPage = () => {
     if (token) navigate("/todo");
   }, []);
 
-  return (
-    <>
-      <SigninContainer />
-    </>
-  );
+  return <SigninContainer />;
 };
 
 export default SigninPage;

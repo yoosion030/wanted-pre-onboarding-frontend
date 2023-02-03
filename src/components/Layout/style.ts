@@ -9,16 +9,14 @@ export const Container = styled.div`
   background-color: #f2f4f6;
 `;
 
-export const AuthForm = styled.form`
+export const Layout = styled.form`
   width: 800px;
   height: 100vh;
   border-right: 1px solid #d1d6db;
   border-left: 1px solid #d1d6db;
   background-color: #fff;
   padding: 200px 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  overflow: scroll;
 
   p {
     color: ${palette.colors.main};

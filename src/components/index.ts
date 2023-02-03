@@ -4,5 +4,5 @@ export { default as TodoContainer } from "./containers/TodoContainer";
 
 export { default as Input } from "./Input";
 export { default as Button } from "./Button";
-export { default as AuthForm } from "./AuthForm";
+export { default as Layout } from "./Layout";
 export { default as Todo } from "./Todo";

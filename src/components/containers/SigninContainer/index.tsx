@@ -1,7 +1,8 @@
-import { Input, Button, AuthForm } from "components";
+import { Input, Button, Layout } from "components";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import instance from "shared/instance";
+import { css } from "@emotion/react";
 
 const SigninContainer = () => {
   const navigate = useNavigate();
@@ -11,8 +12,7 @@ const SigninContainer = () => {
   const [emailError, setEmailError] = useState<boolean>(true);
   const [passwordError, setPasswordError] = useState<boolean>(true);
 
-  const handleSignin = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
+  const handleSignin = async () => {
     try {
       const { data } = await instance.post("/auth/signin", { email, password });
       localStorage.setItem("access_token", data.access_token);
@@ -37,7 +37,7 @@ const SigninContainer = () => {
   }, [password]);
 
   return (
-    <AuthForm>
+    <Layout>
       <div>
         <p>이메일</p>
         <Input
@@ -56,13 +56,15 @@ const SigninContainer = () => {
         />
       </div>
       <Button
+        type="button"
         data-testid="signin-button"
         disabled={emailError || passwordError}
         onClick={handleSignin}
+        style={{ width: "100%" }}
       >
         로그인
       </Button>
-    </AuthForm>
+    </Layout>
   );
 };
 

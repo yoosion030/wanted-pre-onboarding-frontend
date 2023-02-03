@@ -1,16 +1,16 @@
 import React from "react";
 import * as S from "./style";
 
-interface AuthFormProps {
+interface LayoutProps {
   children: React.ReactNode;
 }
 
-const AuthForm = ({ children }: AuthFormProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <S.Container>
-      <S.AuthForm>{children}</S.AuthForm>;
+      <S.Layout>{children}</S.Layout>
     </S.Container>
   );
 };
 
-export default AuthForm;
+export default Layout;
