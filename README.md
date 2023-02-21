@@ -3,7 +3,7 @@
 - 프로젝트 실행 방법
 
 ```
-$ git clone https://github.com/walking-sunset/selection-task.git
+$ git clone https://github.com/yoosion030/wanted-pre-onboarding-frontend.git
 $ yarn install
 $ yarn start
 ```
