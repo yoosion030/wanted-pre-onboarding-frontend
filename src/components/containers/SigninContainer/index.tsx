@@ -2,7 +2,6 @@ import { Input, Button, Layout } from "components";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import instance from "shared/instance";
-import { css } from "@emotion/react";
 
 const SigninContainer = () => {
   const navigate = useNavigate();
@@ -28,7 +27,8 @@ const SigninContainer = () => {
   };
 
   useEffect(() => {
-    if (email.includes("@")) setEmailError(false);
+    if (!email.includes("@")) setEmailError(true);
+    else setEmailError(false);
   }, [email]);
 
   useEffect(() => {

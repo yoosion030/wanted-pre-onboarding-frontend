@@ -19,9 +19,9 @@ const SignupContainer = () => {
       console.log(error);
     }
   };
-
   useEffect(() => {
-    if (email.includes("@")) setEmailError(false);
+    if (!email.includes("@")) setEmailError(true);
+    else setEmailError(false);
   }, [email]);
 
   useEffect(() => {
